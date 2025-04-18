@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本の天気予報</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>日本の天気予報</h1>
+    <div id="map" style="height: 500px;"></div>
+    <div id="weather-info">
+        <h2>天気情報</h2>
+        <p id="city-name"></p>
+        <p id="temperature"></p>
+        <p id="description"></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="/static/js/scripts.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([36.2048, 138.2529], 5); // Centered on Japan
+
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Handle map click event
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            // Call the function to get weather data based on lat/lng
+            getWeatherByCoordinates(lat, lng);
+        });
+
+        function getWeatherByCoordinates(lat, lng) {
+            // Implement the API call to fetch weather data
+            // Update the weather-info section with the fetched data
+        }
+    </script>
+</body>
+</html>
